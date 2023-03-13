@@ -1,0 +1,10 @@
+{
+  "name": "selected/test-project",
+  "type": "project",
+  "description": "Selected Test Project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}

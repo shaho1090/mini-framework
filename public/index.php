@@ -1,3 +1,5 @@
 <?php
 
-echo 'got there!';
+require __DIR__.'/../vendor/autoload.php';
+
+
