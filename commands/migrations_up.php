@@ -24,11 +24,11 @@ foreach ($migrations as $migration) {
         foreach ($statements as $statement) {
             get_db()->exec($statement);
         }
+
+        add_to_migrations_table($migration);
     } catch (Exception $exception) {
         throw new \Exception($exception->getMessage());
     }
-
-    add_to_migrations_table($migration);
 }
 
 function make_migrations_table(): void
