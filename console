@@ -10,7 +10,7 @@ $app->runConsole();
 $commands_path = __DIR__ . '/commands';
 
 if (isset($argv[1])) {
-    $command = str_replace(':','_',$argv[1]).'.php';
+    $command = str_replace('-','_',str_replace(':','_',$argv[1])).'.php';
     include_once($commands_path . '/' . $command);
     echo PHP_EOL;
 }
