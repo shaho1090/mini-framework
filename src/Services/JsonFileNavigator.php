@@ -9,8 +9,14 @@ class JsonFileNavigator
     private string $filePath;
     private string $filename;
     private SplFileObject $file;
-    private array $lines;
+    private string $data = '';
     private int $offset;
+    private string $lastOffsetFile;
+
+    public function __construct()
+    {
+        $this->lastOffsetFile = storage_path() . '/' . 'last_offset.txt';
+    }
 
     public function navigate(string $filename): bool
     {
@@ -31,7 +37,7 @@ class JsonFileNavigator
         $this->setLines();
 
         $this->storeOffset($this->offset++);
-        $this->insertChunk($this->lines);
+        $this->insertChunk();
         return true;
     }
 
@@ -40,9 +46,12 @@ class JsonFileNavigator
         $this->filePath = storage_path() . '/' . $this->filename;
     }
 
-    private function insertChunk(array $lines): void
+    private function insertChunk(): void
     {
-//        var_dump($this->lines);
+        if (!empty($this->data)) {
+            $importer = new FileImporter($this->data);
+            $importer->import();
+        }
     }
 
     private function setOffset(): void
@@ -57,12 +66,11 @@ class JsonFileNavigator
 
     private function readOffset(): false|string
     {
-        $file = fopen(storage_path().'/'.'last_offset.txt', 'rb');
-
-        if(!$file){
+        if (!file_exists($this->lastOffsetFile)) {
             $this->storeOffset(1);
-            $this->readOffset();
         }
+
+        $file = fopen($this->lastOffsetFile, 'rb');
 
         $offset = fgets($file);
 
@@ -80,11 +88,10 @@ class JsonFileNavigator
                 break;
             }
 
-            $this->lines[] = $this->file->current();
+            $this->data = $this->data . $this->file->current();
 
             $this->offset++;
-            var_dump($this->offset);
-        } while (strpos($this->file->current(), '},') !== 3);
+        } while (strpos($this->file->current(), '}') !== 3);
     }
 
     private function resetOffset(): void
