@@ -15,3 +15,16 @@ if (!function_exists('move_file_to_storage')) {
         move_uploaded_file($file_data['tmp_name'], $filePath);
     }
 }
+
+if (!function_exists('store_file')) {
+    function store_file(string $name, string $data): void
+    {
+        $filePath = storage_path() . '/' . $name;
+
+        $file =fopen($filePath, "w");
+
+        fwrite($file, $data);
+
+        fclose($file);
+    }
+}
