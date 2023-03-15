@@ -3,11 +3,13 @@
 namespace App;
 
 use App\Exceptions\RouteNotFoundException;
+use App\Services\HelperLoader;
 use App\Services\Router;
 
 class App
 {
     private static App $instance;
+    private Router $router;
 
     private function __construct(){}
 
@@ -25,9 +27,24 @@ class App
      */
     public function run(): void
     {
-        $router = new Router();
-        $router->registerFromAttributes();
+        $this->runConsole();
 
-        echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
+        $this->registerRouters();
+
+        echo $this->router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
+    }
+
+    public function runConsole(): void
+    {
+        new HelperLoader();
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    private function registerRouters(): void
+    {
+        $this->router = new Router();
+        $this->router->registerFromAttributes();
     }
 }
