@@ -6,7 +6,7 @@ use React\EventLoop\TimerInterface;
 
 $loop = Loop::get();
 
-$loop->addPeriodicTimer(1, function (TimerInterface $timer) use ($loop) {
+$loop->addPeriodicTimer(0.5, function (TimerInterface $timer) use ($loop) {
     $jobSeeker = new JobSeeker();
 
     /** in case you want to not stop the worker */
