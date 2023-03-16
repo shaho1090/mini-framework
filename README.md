@@ -6,7 +6,7 @@ After cloning the repository please go to project directory run this commands re
 ````
 # docker-compose up --build -d
 
-#docker exec -it selected-test-app-1 /bin/bash
+#docker exec -it selected-test_app_1 /bin/bash
 
 #composer install
 
