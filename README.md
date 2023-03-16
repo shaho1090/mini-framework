@@ -4,7 +4,7 @@
 
 After cloning the repository please go to project directory run this commands respectively on terminal:
 ````
-# docker-compose up --build
+# docker-compose up --build -d
 
 #docker exec -it selected-test-app-1 /bin/bash
 
