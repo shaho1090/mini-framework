@@ -26,8 +26,6 @@ class Product
         $this->query = 'INSERT INTO '.$this->table.' 
         (id, nr, name, product_url,search_keywords,description,brand) 
         VALUES (:id, :nr, :name, :product_url, :search_keywords, :description, :brand) ';
-
-        var_dump($this->query);
     }
 
     private function setStatement(): void
