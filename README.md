@@ -13,7 +13,7 @@ After cloning the repository please go to project directory run this commands re
 #php console migrations:up
 ````
 
-**Upload the json file vie this link using Insomnia or Postman:**
+**Upload the json file via this link using Insomnia or Postman:**
 ````
 http://localhost:8100/import-file
 ````
