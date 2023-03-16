@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists('storage_path')) {
-    if (!file_exists('path/to/directory')) {
+    if (!file_exists('/../../storage')) {
         mkdir(__DIR__ . '/../../storage', 0777, true);
     }
 
