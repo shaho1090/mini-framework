@@ -1,6 +1,10 @@
 <?php
 
 if (!function_exists('storage_path')) {
+    if (!file_exists('path/to/directory')) {
+        mkdir(__DIR__ . '/../../storage', 0777, true);
+    }
+
     function storage_path(): string
     {
         return __DIR__ . '/../../storage';
