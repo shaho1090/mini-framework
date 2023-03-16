@@ -1,12 +1,12 @@
 <?php
 
 if (!function_exists('storage_path')) {
-    if (!file_exists('/../../storage')) {
-        mkdir(__DIR__ . '/../../storage', 0777, true);
-    }
-
     function storage_path(): string
     {
+        if (!file_exists(__DIR__ .'/../../storage')) {
+            mkdir(__DIR__ . '/../../storage', 0777, true);
+        }
+
         return __DIR__ . '/../../storage';
     }
 }
