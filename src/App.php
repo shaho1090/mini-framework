@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Exceptions\FileNotFoundException;
 use App\Exceptions\RouteNotFoundException;
 use App\Services\HelperLoader;
 use App\Services\Router;
@@ -10,8 +11,12 @@ class App
 {
     private static App $instance;
     private Router $router;
+    private Container $container;
 
-    private function __construct(){}
+    private function __construct()
+    {
+        $this->container = new Container();
+    }
 
     public static function getInstance(): self
     {
@@ -41,10 +46,11 @@ class App
 
     /**
      * @throws \ReflectionException
+     * @throws FileNotFoundException
      */
     private function registerRouters(): void
     {
-        $this->router = new Router();
+        $this->router = new Router($this->container);
         $this->router->registerFromAttributes();
     }
 }

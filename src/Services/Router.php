@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Attributes\Route;
+use App\Container;
+use App\Exceptions\ClassNotFoundException;
 use App\Exceptions\FileNotFoundException;
 use App\Exceptions\RouteNotFoundException;
 
@@ -14,7 +16,7 @@ class Router
     /**
      * @throws FileNotFoundException
      */
-    public function __construct()
+    public function __construct(private Container $container)
     {
         $this->setController();
     }
@@ -46,6 +48,7 @@ class Router
 
     /**
      * @throws RouteNotFoundException
+     * @throws ClassNotFoundException
      */
     public function resolve(string $requestUri, string $requestMethod)
     {
@@ -61,7 +64,9 @@ class Router
             [$class, $method] = $action;
 
             if (class_exists($class)) {
-                $class = new $class();
+//                $class = new $class();
+//                $class = (new Container())->get($class);
+                $class = $this->container->get($class);
 
                 if (method_exists($class, $method)) {
                     return call_user_func_array([$class, $method], []);

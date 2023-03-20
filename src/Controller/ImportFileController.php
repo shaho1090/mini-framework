@@ -4,14 +4,20 @@ namespace App\Controller;
 
 use App\Attributes\Post;
 use App\Attributes\Route;
+use App\Container;
 use App\Jobs\ImportFileJob;
+use App\Services\TestService;
 
 class ImportFileController
 {
+    public function __construct(
+        private TestService $testService
+    ) {}
+
     #[Route('/')]
     public function index()
     {
-        return 'Home';
+        return $this->testService->handle();
     }
 
     /**
