@@ -1,5 +1,3 @@
-# selected-test
-
 **Short instruction:**
 
 After cloning the repository please go to project directory run this commands respectively on terminal:
