@@ -1,6 +1,6 @@
 **Short instruction:**
 
-After cloning the repository please go to project directory run this commands respectively on terminal:
+After cloning the repository, please go to the project directory and run these commands respectively on the terminal:
 ````
 # docker-compose up --build -d
 
@@ -20,13 +20,11 @@ http://localhost:8100/import-file
 #php console worker:start
 ````
 
-**Check the product table with phpmyadmin via this link:**
+**Check the product table with phpMyAdmin via this link:**
 ````
 http://localhost:8088/
 ````
 
-I have not used any framework for implementing this project. I just used ReactPHP library for running the job.
-I have done this project a little bit like frameworks you can check out the code and see!
-     
+I have not used any framework for implementing this project. I just used the ReactPHP library to run the jobs.
+I have done this project a little bit like frameworks, you can check out the code and see!
 
-* *And also I should mention that the project is not completed yet.*
